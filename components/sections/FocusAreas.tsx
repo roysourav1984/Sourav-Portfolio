@@ -12,7 +12,7 @@ interface FocusAreasProps {
 }
 
 export default function FocusAreas({ data }: FocusAreasProps) {
-  const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [expandedId, setExpandedId] = useState<number | null>(null);
   const [showAll, setShowAll] = useState(false);
   const sortedData = [...data].sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
   const prefersReducedMotion = useReducedMotion();
@@ -65,7 +65,7 @@ export default function FocusAreas({ data }: FocusAreasProps) {
                   layout
                 >
                   <div
-                    onClick={() => setExpandedId(expandedId === area.id ? null : area.id)}
+                    onClick={() => setExpandedId(expandedId === area.id ? null : (area.id ?? null))}
                     className="cursor-pointer"
                   >
                     <Card

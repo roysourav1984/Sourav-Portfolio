@@ -1,6 +1,7 @@
 'use client';
 
 import AdminLayout from '@/components/admin/AdminLayout';
+import { ProfileImageUpload } from '@/components/admin/ProfileImageUpload';
 import { useState, useEffect } from 'react';
 
 interface HeroContent {
@@ -242,8 +243,19 @@ export default function HeroAdminPage() {
           </div>
 
           <div>
+            <h3 className="text-heading-sm font-display text-ink mb-4">Portrait Image</h3>
+            <ProfileImageUpload
+              currentImageUrl={portraitUrl}
+              onUploadSuccess={(url) => {
+                setPortraitUrl(url);
+                setMessage('Image uploaded successfully! Click Save to persist changes.');
+              }}
+            />
+          </div>
+
+          <div>
             <label htmlFor="portraitUrl" className="block text-body-md font-medium text-ink mb-2">
-              Portrait Image URL
+              Portrait Image URL (or use upload above)
             </label>
             <input
               id="portraitUrl"
@@ -253,17 +265,6 @@ export default function HeroAdminPage() {
               className="w-full px-4 py-2 border border-rule bg-paper text-ink focus:outline-none focus:border-accent"
               placeholder="https://example.com/portrait.jpg"
             />
-            {portraitUrl && (
-              <div className="mt-4 p-4 border border-rule">
-                <p className="text-body-sm text-mid mb-2">Preview:</p>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={portraitUrl}
-                  alt={portraitAlt || 'Portrait preview'}
-                  className="w-32 h-32 object-cover border border-rule"
-                />
-              </div>
-            )}
           </div>
 
           <div>
