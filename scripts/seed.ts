@@ -75,23 +75,65 @@ export async function seedDatabase() {
       {
         title: "Program Delivery & Governance",
         description:
-          "Expert in Agile, Waterfall, and Hybrid models—managing WBS, critical path, budget forecasting, change control, and multi-million-dollar portfolios with cross-functional stakeholder alignment.",
-        stat: "19+ years enterprise leadership",
+          "Enterprise program delivery expertise across Agile, Waterfall, and Hybrid models. Proficient in Work Breakdown Structure (WBS), Critical Path Analysis, Budget Forecasting, Change Control, Scope Management, and Risk Registers. Successfully managed $7M+ program budgets across 35+ members in multi-year, multi-geographic locations. Experienced with diverse PMS systems (Agilisys, Opera, Amadeus). Demonstrated excellence in delivering complex, interdependent initiatives with rigorous governance and stakeholder alignment.",
+        stat: "$7M+ program budget, 35+ members, multi-geographic scale",
         order: 1,
       },
       {
-        title: "AI/GenAI & Platform Engineering",
+        title: "Project Management",
         description:
-          "Leading AI-driven supply chain optimization, GenAI chatbots, intelligent automation (RPA, document intelligence), and modern data platform architecture leveraging Azure, Databricks, and LLM technologies.",
-        stat: "5+ major AI platforms",
+          "Comprehensive project management expertise spanning Statement of Work (SOW) and contract writing, Project Charters, Resource Planning, Variance Analysis, and KPI Frameworks. Strong proficiency in RACI communication models, Steering Committee Management, and P&L ownership. Proven ability to drive revenue growth, manage stakeholder expectations, and deliver measurable business outcomes through structured project governance and financial accountability.",
+        stat: "Full P&L ownership, revenue growth focus",
         order: 2,
+      },
+      {
+        title: "AI/ML Solutions & Platform Engineering",
+        description:
+          "End-to-end AI/ML solutions delivery expertise including Agentic AI, Generative AI, and Retrieval-Augmented Generation (RAG) architectures. Proficient with Azure OpenAI, Data Analytics, and Data Engineering. Expert in designing and implementing Medallion Architecture (Bronze-Silver-Gold) for scalable data pipelines. Delivered production-grade AI platforms spanning demand forecasting, supply chain optimization, and intelligent document processing with measurable business impact.",
+        stat: "5+ AI platforms shipped, Medallion Architecture at scale",
+        order: 3,
+      },
+      {
+        title: "Intelligent Automation",
+        description:
+          "Full-spectrum workflow automation expertise across RPA, UiPath, Microsoft Copilot Studio, Power Automate, Document Intelligence, and Azure Business Rules Engine. Designed and deployed end-to-end automation pipelines for Accounts Payable invoice automation, process optimization, and intelligent document handling. Driven significant cost reductions and operational efficiency improvements through strategic automation initiatives and workflow optimization.",
+        stat: "End-to-end automation pipelines, cost reduction delivered",
+        order: 4,
       },
       {
         title: "Agile Leadership & Transformation",
         description:
-          "Servant-leader Scrum Master (8+ years) with expertise in SAFe, Scrum, and large-scale organizational transformation—facilitating PI Planning, sprint ceremonies, and maintaining 90%+ delivery commitment rates.",
-        stat: "500+ engineers transformed",
-        order: 3,
+          "8+ years as Certified Scrum Master with deep SAFe expertise. Expert in driving organizational Agile transformation, facilitating PI Planning, conducting sprint ceremonies, and maintaining 90%+ sprint commitment rates. Skilled in team facilitation, continuous improvement coaching, and establishing high-performing Agile frameworks. Successfully led 35+ distributed teams through Agile adoption and scaled agile practices across enterprise programs.",
+        stat: "8+ years Scrum Master, 90%+ sprint commitment, SAFe Agilist",
+        order: 5,
+      },
+      {
+        title: "Cloud & Data Architecture",
+        description:
+          "Enterprise-scale cloud and data architecture expertise with Azure Data Factory, Databricks, Azure Kubernetes Service (AKS), and Hybrid Cloud infrastructure. Designed Medallion Architecture data pipelines for analytics and AI workloads. Proficient in Azure DevOps, CI/CD automation, and scalable data modeling. Built production systems supporting business intelligence, predictive analytics, and real-time decision-making at enterprise scale.",
+        stat: "Medallion architecture at enterprise scale, Hybrid Cloud",
+        order: 6,
+      },
+      {
+        title: "Stakeholder Engagement & Leadership",
+        description:
+          "Executive-level stakeholder management and cross-functional leadership excellence. Expert in Executive Alignment, vendor governance, SLA enforcement, and conflict resolution. Skilled in building consensus across competing priorities, managing stakeholder expectations, and driving alignment on strategic initiatives. Proven ability to navigate complex organizational dynamics and maintain strong relationships with C-suite executives, steering committees, and delivery teams.",
+        stat: "Executive alignment, multi-stakeholder orchestration",
+        order: 7,
+      },
+      {
+        title: "Pre-sales & Solutioning",
+        description:
+          "Strategic pre-sales and solutioning expertise including RFP/RFI response leadership, business case development, and solution architecture design for enterprise clients. Skilled in Go-To-Market (GTM) strategy and pursuit management. Translated complex business requirements into comprehensive technical roadmaps and secured high-value implementation engagements. Bridged sales and delivery organizations to ensure solution viability and successful customer outcomes.",
+        stat: "RFP to signed SOW pipeline, high-value pursuits",
+        order: 8,
+      },
+      {
+        title: "Portfolio & Program Management",
+        description:
+          "Multi-vendor portfolio governance and program management excellence. Expert in dependency planning, capacity planning, and portfolio reporting across multiple concurrent programs. Established delivery standards, ensured cost optimization, and managed vendor relationships. Skilled in balancing competing priorities, risk management, and resource optimization across portfolio. Delivered enterprise-wide program roadmaps with clear alignment to business objectives.",
+        stat: "Multi-vendor governance, portfolio-scale delivery",
+        order: 9,
       },
     ]);
 
