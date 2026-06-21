@@ -46,8 +46,6 @@ export async function seedDatabase() {
           headline: "Technical Program Manager & Delivery Leader",
           subtitle: "AI/GenAI Solutions & Enterprise Transformation",
           location: "Kolkata, West Bengal, India",
-          portraitUrl: null,
-          portraitAlt: "Profile portrait",
         })
         .returning()
     )[0].id;

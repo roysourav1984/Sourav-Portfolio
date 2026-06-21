@@ -37,4 +37,3 @@ next-env.d.ts
 !.gitkeep
 
 .vercel
-.env*
