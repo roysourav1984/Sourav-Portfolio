@@ -1,20 +1,36 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { db } from '@/db';
-import { adminSessions } from '@/db/schema';
-import { eq } from 'drizzle-orm';
+import { NextRequest, NextResponse } from "next/server";
+import { db } from "@/db";
+import { adminSessions } from "@/db/schema";
+import { eq } from "drizzle-orm";
+import { checkRateLimit } from "@/lib/rateLimit";
 
-const SESSION_COOKIE_NAME = 'admin_session';
+const SESSION_COOKIE_NAME = "admin_session";
 
-export async function proxy(request: NextRequest) {
+export default async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  const method = request.method;
 
   // Allow login page and login/logout API routes without a session
   if (
-    pathname === '/admin/login' ||
-    pathname === '/api/admin/login' ||
-    pathname === '/api/admin/logout'
+    pathname === "/admin/login" ||
+    pathname === "/api/admin/login" ||
+    pathname === "/api/admin/logout"
   ) {
     return NextResponse.next();
+  }
+
+  // Rate limit mutations on admin APIs
+  if (
+    pathname.startsWith("/api/admin") &&
+    ["POST", "PUT", "DELETE", "PATCH"].includes(method)
+  ) {
+    const ip = request.headers.get("x-forwarded-for") || "127.0.0.1";
+    if (!checkRateLimit(ip)) {
+      return NextResponse.json(
+        { error: "Rate limit exceeded" },
+        { status: 429 },
+      );
+    }
   }
 
   // Check for valid session cookie
@@ -22,7 +38,7 @@ export async function proxy(request: NextRequest) {
 
   if (!token) {
     // Redirect to login
-    return NextResponse.redirect(new URL('/admin/login', request.url));
+    return NextResponse.redirect(new URL("/admin/login", request.url));
   }
 
   try {
@@ -38,7 +54,7 @@ export async function proxy(request: NextRequest) {
     if (!session.length || session[0].expiresAt < now) {
       // Session expired or invalid
       const response = NextResponse.redirect(
-        new URL('/admin/login', request.url),
+        new URL("/admin/login", request.url),
       );
       response.cookies.delete(SESSION_COOKIE_NAME);
       return response;
@@ -48,12 +64,12 @@ export async function proxy(request: NextRequest) {
     return NextResponse.next();
   } catch (error) {
     // On error, redirect to login
-    console.error('Session verification error:', error);
-    return NextResponse.redirect(new URL('/admin/login', request.url));
+    console.error("Session verification error:", error);
+    return NextResponse.redirect(new URL("/admin/login", request.url));
   }
 }
 
 export const config = {
-  matcher: ['/admin/:path*', '/api/admin/:path*'],
-  runtime: 'nodejs',
+  matcher: ["/admin/:path*", "/api/admin/:path*"],
+  runtime: "nodejs",
 };
