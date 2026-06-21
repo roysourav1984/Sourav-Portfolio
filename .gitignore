@@ -33,5 +33,5 @@ next-env.d.ts
 /playwright-report/
 
 # Database
-/src/db/migrations/*
+/db/migrations/*
 !.gitkeep
