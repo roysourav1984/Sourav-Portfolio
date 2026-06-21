@@ -43,14 +43,40 @@ cd sourav-portfolio
 npm install
 ```
 
-3. Set up environment variables by creating a `.env.local` file with your database connection string
+3. Set up environment variables by creating a `.env.local` file with your database connection string:
+```
+DATABASE_URL=postgresql://user:password@localhost:5432/sourav_portfolio
+```
 
-4. Run the development server:
+### Connecting to a Fresh Database
+
+Before starting the server for the first time with a new database, you must initialize the database schema and seed data:
+
+1. **Generate database migrations** (if needed):
+```bash
+npm run db:generate
+```
+
+2. **Run database migrations**:
+```bash
+npm run db:migrate
+```
+This command creates all necessary tables and indexes in your PostgreSQL database using Drizzle ORM.
+
+3. **Seed sample data**:
+```bash
+npm run db:seed
+```
+This seeds the database with sample portfolio content including hero section, experience, skills, certifications, and more.
+
+4. **Start the development server**:
 ```bash
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser to view the portfolio.
+
+**Optional**: You can also use `npm run db:studio` to access Drizzle Studio for a visual database management interface.
 
 ## Project Structure
 
