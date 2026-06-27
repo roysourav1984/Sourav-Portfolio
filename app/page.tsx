@@ -1,6 +1,5 @@
 import Masthead from '@/components/sections/Masthead';
 import Hero from '@/components/sections/Hero';
-import Summary from '@/components/sections/Summary';
 import FocusAreas from '@/components/sections/FocusAreas';
 import Initiatives from '@/components/sections/Initiatives';
 import Experience from '@/components/sections/Experience';
@@ -53,8 +52,7 @@ export default async function HomePage() {
   return (
     <>
       <Masthead />
-      {hero && <Hero data={hero} />}
-      {summary && <Summary data={summary} />}
+      {hero && <Hero data={hero} summaryData={summary ?? undefined} />}
       {focusAreas && focusAreas.length > 0 && <FocusAreas data={focusAreas} />}
       {initiatives && initiatives.length > 0 && <Initiatives data={initiatives} />}
       {experience && experience.length > 0 && <Experience data={experience} />}

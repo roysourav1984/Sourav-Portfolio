@@ -4,10 +4,11 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Rule from '../ui/Rule';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
-import type { HeroContent } from '@/lib/types';
+import type { HeroContent, SummaryContent } from '@/lib/types';
 
 interface HeroProps {
   data: HeroContent;
+  summaryData?: SummaryContent;
 }
 
 const containerVariants = {
@@ -30,7 +31,7 @@ const itemVariants = {
   },
 };
 
-export default function Hero({ data }: HeroProps) {
+export default function Hero({ data, summaryData }: HeroProps) {
   const prefersReducedMotion = useReducedMotion();
 
   return (
@@ -74,6 +75,24 @@ export default function Hero({ data }: HeroProps) {
           <p className="text-body-md text-mid leading-relaxed">
             {data.summary}
           </p>
+        )}
+
+        {/* Professional Summary */}
+        {summaryData && summaryData.paragraphs && summaryData.paragraphs.length > 0 && (
+          <div className="mt-4 space-y-4 sm:space-y-6">
+            {summaryData.paragraphs.map((para, idx) => (
+              <p key={idx} className="text-body-md sm:text-body-lg text-ink leading-relaxed">
+                {para}
+              </p>
+            ))}
+            {summaryData.pullQuote && (
+              <blockquote className="mt-8 sm:mt-12 pl-4 sm:pl-6 border-l-4 border-accent">
+                <p className="text-heading-sm sm:text-heading-md font-display text-accent italic">
+                  &ldquo;{summaryData.pullQuote}&rdquo;
+                </p>
+              </blockquote>
+            )}
+          </div>
         )}
       </motion.div>
 
