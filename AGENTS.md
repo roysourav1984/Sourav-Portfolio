@@ -254,6 +254,49 @@ All routes live under `app/api/admin/`. Follow these conventions:
 - Drizzle dialect: `postgresql` (not `sqlite`, not `mysql`)
 - `DATABASE_URL` environment variable provides the connection string
 
+### Migration Gotchas
+
+**`migrate()` reads `_journal.json` — hand-written SQL files are ignored without a journal entry.**
+
+`scripts/migrate.ts` uses `drizzle-orm/postgres-js/migrator`, which reads `db/migrations/meta/_journal.json` to decide which `.sql` files to apply. A SQL file placed in `db/migrations/` is silently skipped unless its `tag` (filename without `.sql`) appears in the journal `entries` array. When writing a migration manually (not via `db:generate`):
+
+1. Add the SQL file to `db/migrations/`.
+2. Add an entry to `db/migrations/meta/_journal.json`:
+   ```json
+   { "idx": <next_integer>, "version": "7", "when": <unix_ms_timestamp>, "tag": "<filename_without_sql>", "breakpoints": true }
+   ```
+   `idx` is sequential (0, 1, 2 …) regardless of the filename prefix. `when` must be greater than the previous entry's `when` or drizzle may not process it in the expected order.
+3. Run `npm run db:migrate`.
+
+If a migration was already missed and the tables must exist now, apply the DDL directly with a temporary script (see `scripts/seed-ai-solutions.ts` for the pattern) and then add the journal entry so future fresh deployments pick it up automatically.
+
+### Seed Script Import Order
+
+`tsx` with `module: "esnext"` (set in `tsconfig.json`) hoists static `import` statements above all other code — including `dotenv.config()` — when running scripts. This means `db/index.ts` reads `process.env.DATABASE_URL` before dotenv has loaded it, throwing "DATABASE_URL is not set".
+
+**Rule: seed/utility scripts must NOT import `db/index.ts` statically.** Instead, follow the `migrate.ts` pattern — create a local postgres client inside the async function body, after dotenv has run:
+
+```ts
+import dotenv from "dotenv";
+import { fileURLToPath } from "url";
+import { dirname, resolve } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+dotenv.config({ path: resolve(__dirname, "../.env.local") });
+
+// Only import packages that don't read env at module load time:
+import { drizzle } from "drizzle-orm/postgres-js";
+import postgres from "postgres";
+import * as schema from "../db/schema";
+
+// Create the client AFTER dotenv has run:
+const client = postgres(process.env.DATABASE_URL!);
+const db = drizzle(client, { schema });
+```
+
+tsx auto-injects `.env.local` when it detects the file (visible as `◇ injected env … from .env.local` in output), but this happens too late for module-level code in `db/index.ts`. The pattern above is reliable regardless of tsx's auto-injection behaviour.
+
 ---
 
 ## TypeScript Rules

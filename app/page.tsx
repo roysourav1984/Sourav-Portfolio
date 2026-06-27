@@ -1,5 +1,6 @@
 import Masthead from '@/components/sections/Masthead';
 import Hero from '@/components/sections/Hero';
+import AiSolutions from '@/components/sections/AiSolutions';
 import FocusAreas from '@/components/sections/FocusAreas';
 import Initiatives from '@/components/sections/Initiatives';
 import Experience from '@/components/sections/Experience';
@@ -19,6 +20,7 @@ import { getCertifications } from '@/lib/data/certifications';
 import { getAwards } from '@/lib/data/awards';
 import { getEducation } from '@/lib/data/education';
 import { getContactInfo } from '@/lib/data/contact';
+import { getAiSolutions } from '@/lib/data/aiSolutions';
 
 export const revalidate = 3600;
 
@@ -26,6 +28,7 @@ export default async function HomePage() {
   const [
     hero,
     summary,
+    aiSolutions,
     focusAreas,
     initiatives,
     experience,
@@ -38,6 +41,7 @@ export default async function HomePage() {
   ] = await Promise.all([
     getHeroContent(),
     getSummary(),
+    getAiSolutions(),
     getFocusAreas(),
     getInitiatives(),
     getExperienceRoles(),
@@ -53,6 +57,7 @@ export default async function HomePage() {
     <>
       <Masthead />
       {hero && <Hero data={hero} summaryData={summary ?? undefined} />}
+      {aiSolutions && <AiSolutions data={aiSolutions} />}
       {focusAreas && focusAreas.length > 0 && <FocusAreas data={focusAreas} />}
       {initiatives && initiatives.length > 0 && <Initiatives data={initiatives} />}
       {experience && experience.length > 0 && <Experience data={experience} />}

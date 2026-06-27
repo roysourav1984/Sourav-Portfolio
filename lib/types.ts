@@ -131,6 +131,25 @@ export interface ContactInfo {
   updatedAt?: Date;
 }
 
+// AI-Led Solutions Section
+export interface AiSolutionItem {
+  id?: number;
+  title: string;
+  description: string;
+  order?: number;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+export interface AiSolutionsSection {
+  id?: number;
+  title: string;
+  intro: string;
+  items: AiSolutionItem[];
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
 // Admin Sessions (custom auth)
 export interface AdminSession {
   id?: string;

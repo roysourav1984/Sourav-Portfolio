@@ -12,3 +12,4 @@ export * from './awards';
 export * from './education';
 export * from './contact';
 export * from './admin';
+export * from './aiSolutions';
