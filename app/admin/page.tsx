@@ -13,6 +13,7 @@ export default function AdminDashboard() {
     { name: 'Awards & Recognition', href: '/admin/awards', description: 'Awards and achievements', icon: '◆' },
     { name: 'Education', href: '/admin/education', description: 'Academic background', icon: '◆' },
     { name: 'Contact Information', href: '/admin/contact', description: 'Email and social links', icon: '◆' },
+    { name: 'AI Solutions', href: '/admin/ai-solutions', description: 'AI-driven initiatives and solutions', icon: '◆' },
   ];
 
   return (
