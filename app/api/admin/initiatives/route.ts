@@ -5,7 +5,7 @@ import {
 } from '@/lib/data/initiatives';
 import { revalidatePath } from 'next/cache';
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     const initiatives = await getInitiatives();
     return NextResponse.json(initiatives || [], { status: 200 });

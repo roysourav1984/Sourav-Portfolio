@@ -5,7 +5,7 @@ import {
 } from '@/lib/data/contact';
 import { revalidatePath } from 'next/cache';
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     const contact = await getContactInfo();
     return NextResponse.json(contact || {}, { status: 200 });

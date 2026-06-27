@@ -61,13 +61,13 @@ export default function AdminDashboard() {
               <div className="space-y-3 text-body-sm text-mid">
                 <p>• All changes save immediately to the database</p>
                 <p>• Public site updates reflect new content instantly</p>
-                <p>• Leave fields empty if content isn't ready yet</p>
+                <p>• Leave fields empty if content isn&apos;t ready yet</p>
               </div>
             </div>
             <div>
               <p className="text-meta-md uppercase text-mid mb-3">Tips</p>
               <div className="space-y-3 text-body-sm text-mid">
-                <p>• Use the "order" field to control section sequence</p>
+                <p>• Use the &quot;order&quot; field to control section sequence</p>
                 <p>• Drag to reorder items within each section</p>
                 <p>• Hover over cards above to see edit options</p>
               </div>

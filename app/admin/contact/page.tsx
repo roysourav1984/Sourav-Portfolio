@@ -9,10 +9,6 @@ export default function ContactAdminPage() {
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState('');
 
-  useEffect(() => {
-    fetchContact();
-  }, []);
-
   async function fetchContact() {
     try {
       const res = await fetch('/api/admin/contact');
@@ -21,10 +17,15 @@ export default function ContactAdminPage() {
         setEmail(data.email);
         setLinkedIn(data.linkedIn || '');
       }
-    } catch (error) {
-      console.error('Failed to fetch contact info:', error);
+    } catch (_error) {
+      console.error('Failed to fetch contact info:', _error);
     }
   }
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    fetchContact();
+  }, []);
 
   async function handleSave() {
     setSaving(true);
@@ -42,7 +43,7 @@ export default function ContactAdminPage() {
       } else {
         setMessage('Failed to save contact info');
       }
-    } catch (error) {
+    } catch {
       setMessage('Error saving contact info');
     } finally {
       setSaving(false);

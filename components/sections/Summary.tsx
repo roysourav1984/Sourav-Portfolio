@@ -22,7 +22,7 @@ export default function Summary({ data }: SummaryProps) {
             {data.pullQuote && (
               <blockquote className="mt-8 sm:mt-12 pl-4 sm:pl-6 border-l-4 border-accent">
                 <p className="text-heading-sm sm:text-heading-md font-display text-accent italic">
-                  "{data.pullQuote}"
+                  &quot;{data.pullQuote}&quot;
                 </p>
               </blockquote>
             )}

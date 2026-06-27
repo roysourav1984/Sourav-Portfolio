@@ -30,7 +30,7 @@ export default function AdminLoginPage() {
 
       // Redirect to admin dashboard on success
       router.push('/admin');
-    } catch (err) {
+    } catch {
       setError('An error occurred during login');
       setLoading(false);
     }

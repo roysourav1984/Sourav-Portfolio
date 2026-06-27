@@ -42,8 +42,8 @@ export default function ExperienceAdminPage() {
       const res = await fetch('/api/admin/experience');
       const data = await res.json();
       setRoles(data);
-    } catch (error) {
-      console.error('Failed to fetch experience roles:', error);
+    } catch (_error) {
+      console.error('Failed to fetch experience roles:', _error);
     }
   }
 
@@ -98,7 +98,7 @@ export default function ExperienceAdminPage() {
       } else {
         setMessage('Failed to save role');
       }
-    } catch (error) {
+    } catch {
       setMessage('Error saving role');
     } finally {
       setSaving(false);
@@ -114,7 +114,7 @@ export default function ExperienceAdminPage() {
         setRoles(roles.filter((r) => r.id !== id));
         setMessage('Role deleted');
       }
-    } catch (error) {
+    } catch {
       setMessage('Error deleting role');
     }
   }

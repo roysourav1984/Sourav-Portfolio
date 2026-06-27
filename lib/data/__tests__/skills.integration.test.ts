@@ -102,7 +102,7 @@ describe('Skills Data Access Layer', () => {
     it('should handle multiple skills in array', async () => {
       const skills = ['React', 'Vue', 'Angular', 'Svelte', 'Qwik'];
 
-      const created = await createSkillCategory({
+      await createSkillCategory({
         categoryName: 'Frontend Frameworks',
         skills,
         order: 1,

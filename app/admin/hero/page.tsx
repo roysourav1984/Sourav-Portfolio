@@ -3,17 +3,6 @@
 import AdminLayout from '@/components/admin/AdminLayout';
 import { useState, useEffect } from 'react';
 
-interface HeroContent {
-  name?: string;
-  headline?: string;
-  subtitle?: string;
-  location?: string;
-  summary?: string;
-  portraitUrl?: string;
-  portraitAlt?: string;
-  stats?: Array<{ id: number; label: string; value: string }>;
-}
-
 interface StatForm {
   id?: number;
   label: string;
@@ -21,7 +10,6 @@ interface StatForm {
 }
 
 export default function HeroAdminPage() {
-  const [hero, setHero] = useState<HeroContent | null>(null);
   const [name, setName] = useState('');
   const [headline, setHeadline] = useState('');
   const [subtitle, setSubtitle] = useState('');
@@ -46,7 +34,6 @@ export default function HeroAdminPage() {
       const res = await fetch('/api/admin/hero');
       const data = await res.json();
       if (data.headline) {
-        setHero(data);
         setName(data.name || '');
         setHeadline(data.headline);
         setSubtitle(data.subtitle);
@@ -56,8 +43,8 @@ export default function HeroAdminPage() {
         setPortraitAlt(data.portraitAlt || '');
         setStats(data.stats || []);
       }
-    } catch (error) {
-      console.error('Failed to fetch hero:', error);
+    } catch (_error) {
+      console.error('Failed to fetch hero:', _error);
     } finally {
       setLoading(false);
     }
@@ -80,7 +67,7 @@ export default function HeroAdminPage() {
       } else {
         setMessage('Failed to save hero content');
       }
-    } catch (error) {
+    } catch {
       setMessage('Error saving hero content');
     } finally {
       setSaving(false);
@@ -99,7 +86,7 @@ export default function HeroAdminPage() {
         setStats(stats.filter((s) => s.id !== id));
         setMessage('Stat deleted');
       }
-    } catch (error) {
+    } catch {
       setMessage('Error deleting stat');
     }
   }
@@ -147,7 +134,7 @@ export default function HeroAdminPage() {
       } else {
         setMessage(`Failed to ${editingStat ? 'update' : 'add'} stat`);
       }
-    } catch (error) {
+    } catch {
       setMessage(`Error ${editingStat ? 'updating' : 'adding'} stat`);
     } finally {
       setSaving(false);

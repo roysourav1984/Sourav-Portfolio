@@ -4,7 +4,7 @@ import MotionSection from '../MotionSection';
 
 vi.mock('framer-motion', () => ({
   motion: {
-    div: ({ children, className, ...props }: any) => (
+    div: ({ children, className, ...props }: { children?: React.ReactNode; className?: string; [key: string]: unknown }) => (
       <div className={className} data-testid="motion-div" {...props}>
         {children}
       </div>

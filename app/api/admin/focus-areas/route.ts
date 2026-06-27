@@ -5,7 +5,7 @@ import {
 } from '@/lib/data/focusAreas';
 import { revalidatePath } from 'next/cache';
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     const areas = await getFocusAreas();
     return NextResponse.json(areas || [], { status: 200 });

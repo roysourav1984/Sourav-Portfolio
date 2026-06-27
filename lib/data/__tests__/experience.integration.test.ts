@@ -52,7 +52,7 @@ describe('Experience Data Access Layer', () => {
   });
 
   it('should handle "Present" as endDate', async () => {
-    const created = await createRole({
+    await createRole({
       slug: 'current-role',
       org: 'Current Org',
       title: 'Senior Lead',
@@ -68,7 +68,7 @@ describe('Experience Data Access Layer', () => {
   });
 
   it('should handle past endDate', async () => {
-    const created = await createRole({
+    await createRole({
       slug: 'past-role',
       org: 'Past Org',
       title: 'Lead',
@@ -84,7 +84,7 @@ describe('Experience Data Access Layer', () => {
   });
 
   it('should retrieve role by slug', async () => {
-    const created = await createRole({
+    await createRole({
       slug: 'director-acme',
       org: 'ACME Inc',
       title: 'Director of Engineering',
@@ -137,7 +137,7 @@ describe('Experience Data Access Layer', () => {
   });
 
   it('should update a role', async () => {
-    const created = await createRole({
+    await createRole({
       slug: 'original-slug',
       org: 'Original Org',
       title: 'Original Title',
@@ -162,7 +162,7 @@ describe('Experience Data Access Layer', () => {
   });
 
   it('should delete a role', async () => {
-    const created = await createRole({
+    await createRole({
       slug: 'to-delete',
       org: 'To Delete',
       title: 'To Delete',
@@ -185,7 +185,7 @@ describe('Experience Data Access Layer', () => {
       'Reduced deployment time by 80%',
     ];
 
-    const created = await createRole({
+    await createRole({
       slug: 'test-responsibilities',
       org: 'Test Org',
       title: 'Test Title',

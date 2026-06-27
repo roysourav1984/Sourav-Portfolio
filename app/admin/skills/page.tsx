@@ -41,8 +41,8 @@ export default function SkillsAdminPage() {
     try {
       const res = await fetch('/api/admin/skills/categories');
       setCategories(await res.json());
-    } catch (error) {
-      console.error('Failed to fetch skill categories:', error);
+    } catch (_error) {
+      console.error('Failed to fetch skill categories:', _error);
     }
   }
 
@@ -50,8 +50,8 @@ export default function SkillsAdminPage() {
     try {
       const res = await fetch('/api/admin/skills/functional');
       setFunctionalSkills(await res.json());
-    } catch (error) {
-      console.error('Failed to fetch functional skills:', error);
+    } catch (_error) {
+      console.error('Failed to fetch functional skills:', _error);
     }
   }
 
@@ -96,7 +96,7 @@ export default function SkillsAdminPage() {
       } else {
         setMessage('Failed to save category');
       }
-    } catch (error) {
+    } catch {
       setMessage('Error saving category');
     } finally {
       setSaving(false);
@@ -112,7 +112,7 @@ export default function SkillsAdminPage() {
         setCategories(categories.filter((c) => c.id !== id));
         setMessage('Category deleted');
       }
-    } catch (error) {
+    } catch {
       setMessage('Error deleting category');
     }
   }
@@ -153,7 +153,7 @@ export default function SkillsAdminPage() {
       } else {
         setMessage('Failed to save skill');
       }
-    } catch (error) {
+    } catch {
       setMessage('Error saving skill');
     } finally {
       setSaving(false);
@@ -169,7 +169,7 @@ export default function SkillsAdminPage() {
         setFunctionalSkills(functionalSkills.filter((s) => s.id !== id));
         setMessage('Skill deleted');
       }
-    } catch (error) {
+    } catch {
       setMessage('Error deleting skill');
     }
   }

@@ -5,7 +5,7 @@ import {
 } from '@/lib/data/experience';
 import { revalidatePath } from 'next/cache';
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     const roles = await getExperienceRoles();
     return NextResponse.json(roles || [], { status: 200 });

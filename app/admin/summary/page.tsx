@@ -3,21 +3,11 @@
 import AdminLayout from '@/components/admin/AdminLayout';
 import { useState, useEffect } from 'react';
 
-interface SummaryContent {
-  id?: number;
-  paragraphs: string[];
-  pullQuote?: string;
-}
-
 export default function SummaryAdminPage() {
   const [paragraphs, setParagraphs] = useState<string[]>(['']);
   const [pullQuote, setPullQuote] = useState('');
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState('');
-
-  useEffect(() => {
-    fetchSummary();
-  }, []);
 
   async function fetchSummary() {
     try {
@@ -27,10 +17,15 @@ export default function SummaryAdminPage() {
         setParagraphs(data.paragraphs);
         setPullQuote(data.pullQuote || '');
       }
-    } catch (error) {
-      console.error('Failed to fetch summary:', error);
+    } catch (_error) {
+      console.error('Failed to fetch summary:', _error);
     }
   }
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    fetchSummary();
+  }, []);
 
   async function handleSave() {
     setSaving(true);
@@ -51,7 +46,7 @@ export default function SummaryAdminPage() {
       } else {
         setMessage('Failed to save summary');
       }
-    } catch (error) {
+    } catch {
       setMessage('Error saving summary');
     } finally {
       setSaving(false);

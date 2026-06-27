@@ -15,7 +15,7 @@ export default function Footer({ data }: FooterProps) {
         <div className="mb-8 sm:mb-12 border-b border-rule pb-8 sm:pb-12">
           <p className="text-body-md sm:text-body-lg leading-relaxed mb-4 sm:mb-6">
             Interested in collaborating on transformational technology initiatives?
-            Let's explore how we can drive meaningful outcomes together.
+            Let&apos;s explore how we can drive meaningful outcomes together.
           </p>
         </div>
 

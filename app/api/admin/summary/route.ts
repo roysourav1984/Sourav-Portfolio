@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getSummary, upsertSummary } from '@/lib/data/summary';
 import { revalidatePath } from 'next/cache';
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     const summary = await getSummary();
     return NextResponse.json(summary || {}, { status: 200 });

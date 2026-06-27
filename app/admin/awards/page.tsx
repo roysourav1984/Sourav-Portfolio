@@ -28,8 +28,8 @@ export default function AwardsAdminPage() {
     try {
       const res = await fetch('/api/admin/awards');
       setAwards(await res.json());
-    } catch (error) {
-      console.error('Failed to fetch awards:', error);
+    } catch (_error) {
+      console.error('Failed to fetch awards:', _error);
     }
   }
 
@@ -76,7 +76,7 @@ export default function AwardsAdminPage() {
       } else {
         setMessage('Failed to save award');
       }
-    } catch (error) {
+    } catch {
       setMessage('Error saving award');
     } finally {
       setSaving(false);
@@ -92,7 +92,7 @@ export default function AwardsAdminPage() {
         setAwards(awards.filter((a) => a.id !== id));
         setMessage('Award deleted');
       }
-    } catch (error) {
+    } catch {
       setMessage('Error deleting award');
     }
   }

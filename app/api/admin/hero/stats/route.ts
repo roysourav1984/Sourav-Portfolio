@@ -4,7 +4,7 @@ import { heroStats } from '@/db/schema';
 import { upsertHeroStat } from '@/lib/data/hero';
 import { revalidatePath } from 'next/cache';
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     const stats = await db.select().from(heroStats).orderBy(heroStats.id).execute();
     return NextResponse.json(stats, { status: 200 });

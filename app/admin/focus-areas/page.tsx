@@ -29,8 +29,8 @@ export default function FocusAreasAdminPage() {
       const res = await fetch('/api/admin/focus-areas');
       const data = await res.json();
       setAreas(data);
-    } catch (error) {
-      console.error('Failed to fetch focus areas:', error);
+    } catch (_error) {
+      console.error('Failed to fetch focus areas:', _error);
     }
   }
 
@@ -77,7 +77,7 @@ export default function FocusAreasAdminPage() {
       } else {
         setMessage('Failed to save focus area');
       }
-    } catch (error) {
+    } catch {
       setMessage('Error saving focus area');
     } finally {
       setSaving(false);
@@ -93,7 +93,7 @@ export default function FocusAreasAdminPage() {
         setAreas(areas.filter((a) => a.id !== id));
         setMessage('Focus area deleted');
       }
-    } catch (error) {
+    } catch {
       setMessage('Error deleting focus area');
     }
   }

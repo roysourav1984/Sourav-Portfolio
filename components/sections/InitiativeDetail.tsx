@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import type { Initiative } from '@/lib/types';
 import Rule from '../ui/Rule';
 import Tag from '../ui/Tag';
@@ -10,9 +11,9 @@ export default function InitiativeDetail({ initiative }: InitiativeDetailProps) 
   return (
     <article className="px-gutter-xs sm:px-gutter-sm md:px-gutter-md lg:px-gutter-lg py-8 sm:py-12 md:py-16">
       {/* Back Link */}
-      <a href="/" className="text-body-xs sm:text-body-sm text-accent hover:underline mb-6 sm:mb-8 inline-block">
+      <Link href="/" className="text-body-xs sm:text-body-sm text-accent hover:underline mb-6 sm:mb-8 inline-block">
         ← Back to Portfolio
-      </a>
+      </Link>
 
       {/* Title */}
       <h1 className="text-display-md sm:text-display-lg font-display text-ink mb-4 sm:mb-6">{initiative.title}</h1>

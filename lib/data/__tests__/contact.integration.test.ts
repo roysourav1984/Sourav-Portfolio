@@ -68,12 +68,12 @@ describe('Contact Data Access Layer', () => {
       linkedIn: 'https://linkedin.com/in/first',
     });
 
-    const second = await upsertContactInfo({
+    await upsertContactInfo({
       email: 'second@example.com',
       linkedIn: 'https://linkedin.com/in/second',
     });
 
-    const third = await upsertContactInfo({
+    await upsertContactInfo({
       email: 'third@example.com',
       linkedIn: 'https://linkedin.com/in/third',
     });

@@ -56,7 +56,7 @@ describe('Initiatives Data Access Layer', () => {
   });
 
   it('should retrieve initiative by slug', async () => {
-    const created = await createInitiative({
+    await createInitiative({
       slug: 'unique-initiative',
       title: 'Test Initiative',
       oneLiner: 'One liner',
@@ -115,7 +115,7 @@ describe('Initiatives Data Access Layer', () => {
   });
 
   it('should update an initiative', async () => {
-    const created = await createInitiative({
+    await createInitiative({
       slug: 'to-update',
       title: 'Original Title',
       oneLiner: 'Original one liner',
@@ -142,7 +142,7 @@ describe('Initiatives Data Access Layer', () => {
   });
 
   it('should delete an initiative', async () => {
-    const created = await createInitiative({
+    await createInitiative({
       slug: 'to-delete',
       title: 'To Delete',
       oneLiner: 'Will be deleted',
@@ -161,7 +161,7 @@ describe('Initiatives Data Access Layer', () => {
   });
 
   it('should handle arrays correctly', async () => {
-    const created = await createInitiative({
+    await createInitiative({
       slug: 'array-test',
       title: 'Array Test',
       oneLiner: 'Testing arrays',

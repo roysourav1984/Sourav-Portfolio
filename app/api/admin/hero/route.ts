@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getHeroContent, upsertHeroContent } from '@/lib/data/hero';
 import { revalidatePath } from 'next/cache';
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     const hero = await getHeroContent();
     return NextResponse.json(hero || {}, { status: 200 });

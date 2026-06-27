@@ -43,16 +43,14 @@ export async function seedDatabase() {
     console.log("✓ Cleared existing data");
 
     // Hero Content
-    const heroId = (
-      await db
-        .insert(heroContent)
-        .values({
-          headline: "Technical Program Manager & Delivery Leader",
-          subtitle: "AI/GenAI Solutions & Enterprise Transformation",
-          location: "Kolkata, West Bengal, India",
-        })
-        .returning()
-    )[0].id;
+    await db
+      .insert(heroContent)
+      .values({
+        headline: "Technical Program Manager & Delivery Leader",
+        subtitle: "AI/GenAI Solutions & Enterprise Transformation",
+        location: "Kolkata, West Bengal, India",
+      })
+      .returning();
 
     await db.insert(heroStats).values([
       { label: "19+ Years", value: "Technical Leadership" },

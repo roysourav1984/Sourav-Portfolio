@@ -28,8 +28,8 @@ export default function EducationAdminPage() {
     try {
       const res = await fetch('/api/admin/education');
       setEntries(await res.json());
-    } catch (error) {
-      console.error('Failed to fetch education entries:', error);
+    } catch (_error) {
+      console.error('Failed to fetch education entries:', _error);
     }
   }
 
@@ -76,7 +76,7 @@ export default function EducationAdminPage() {
       } else {
         setMessage('Failed to save entry');
       }
-    } catch (error) {
+    } catch {
       setMessage('Error saving entry');
     } finally {
       setSaving(false);
@@ -92,7 +92,7 @@ export default function EducationAdminPage() {
         setEntries(entries.filter((e) => e.id !== id));
         setMessage('Entry deleted');
       }
-    } catch (error) {
+    } catch {
       setMessage('Error deleting entry');
     }
   }

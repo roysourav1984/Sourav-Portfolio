@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import SectionHeader from '../ui/SectionHeader';
 import Tag from '../ui/Tag';
-import { useReducedMotion } from '@/hooks/useReducedMotion';
 import type { SkillCategory, FunctionalSkill } from '@/lib/types';
 
 interface SkillsMatrixProps {
@@ -14,7 +13,6 @@ interface SkillsMatrixProps {
 export default function SkillsMatrix({ categories, functionalSkills }: SkillsMatrixProps) {
   const sortedCategories = [...categories].sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
   const sortedFunctional = [...functionalSkills].sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
-  const prefersReducedMotion = useReducedMotion();
 
   const itemVariants = {
     hidden: { opacity: 0 },

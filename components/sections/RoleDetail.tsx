@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import type { ExperienceRole } from '@/lib/types';
 import Rule from '../ui/Rule';
 
@@ -19,9 +20,9 @@ export default function RoleDetail({ role }: RoleDetailProps) {
   return (
     <article className="px-gutter-xs sm:px-gutter-sm md:px-gutter-md lg:px-gutter-lg py-8 sm:py-12 md:py-16">
       {/* Back Link */}
-      <a href="/" className="text-body-xs sm:text-body-sm text-accent hover:underline mb-6 sm:mb-8 inline-block">
+      <Link href="/" className="text-body-xs sm:text-body-sm text-accent hover:underline mb-6 sm:mb-8 inline-block">
         ← Back to Portfolio
-      </a>
+      </Link>
 
       {/* Title & Organization */}
       <div className="mb-4 sm:mb-6">

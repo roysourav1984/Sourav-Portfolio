@@ -22,7 +22,7 @@ export async function PUT(
       );
     }
 
-    const result = await db
+    await db
       .update(heroStats)
       .set({ label, value })
       .where(eq(heroStats.id, id))

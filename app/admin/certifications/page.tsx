@@ -28,8 +28,8 @@ export default function CertificationsAdminPage() {
     try {
       const res = await fetch('/api/admin/certifications');
       setCerts(await res.json());
-    } catch (error) {
-      console.error('Failed to fetch certifications:', error);
+    } catch (_error) {
+      console.error('Failed to fetch certifications:', _error);
     }
   }
 
@@ -76,7 +76,7 @@ export default function CertificationsAdminPage() {
       } else {
         setMessage('Failed to save certification');
       }
-    } catch (error) {
+    } catch {
       setMessage('Error saving certification');
     } finally {
       setSaving(false);
@@ -92,7 +92,7 @@ export default function CertificationsAdminPage() {
         setCerts(certs.filter((c) => c.id !== id));
         setMessage('Certification deleted');
       }
-    } catch (error) {
+    } catch {
       setMessage('Error deleting certification');
     }
   }

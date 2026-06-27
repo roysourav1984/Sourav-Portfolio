@@ -39,7 +39,7 @@ describe('Database Schema - Integration Tests', () => {
         ORDER BY table_name
       `);
 
-      const tableNames = (tables as any[]).map((t) => t.table_name);
+      const tableNames = (tables as Array<{ table_name: string }>).map((t) => t.table_name);
 
       // Verify all expected tables exist
       expect(tableNames).toContain('admin_sessions');
@@ -65,12 +65,12 @@ describe('Database Schema - Integration Tests', () => {
         ORDER BY ordinal_position
       `);
 
-      const columnMap = (columns as any[]).reduce(
+      const columnMap = (columns as Array<{ column_name: string; data_type: string; is_nullable: string }>).reduce(
         (acc, col) => {
           acc[col.column_name] = { type: col.data_type, nullable: col.is_nullable };
           return acc;
         },
-        {} as Record<string, any>
+        {} as Record<string, { type: string; nullable: string }>
       );
 
       expect(columnMap['id'].type).toBe('integer');
@@ -88,7 +88,7 @@ describe('Database Schema - Integration Tests', () => {
         WHERE table_name = 'initiatives'
       `);
 
-      const uniqueConstraints = (constraints as any[])
+      const uniqueConstraints = (constraints as Array<{ constraint_name: string; constraint_type: string }>)
         .filter((c) => c.constraint_type === 'UNIQUE')
         .map((c) => c.constraint_name);
 
@@ -102,7 +102,7 @@ describe('Database Schema - Integration Tests', () => {
         WHERE table_name = 'experience_roles'
       `);
 
-      const uniqueConstraints = (constraints as any[])
+      const uniqueConstraints = (constraints as Array<{ constraint_name: string; constraint_type: string }>)
         .filter((c) => c.constraint_type === 'UNIQUE')
         .map((c) => c.constraint_name);
 
@@ -116,7 +116,7 @@ describe('Database Schema - Integration Tests', () => {
         WHERE table_name = 'admin_sessions' AND column_name = 'id'
       `);
 
-      expect((columns as any[])[0].data_type).toBe('uuid');
+      expect((columns as Array<{ column_name: string; data_type: string }>)[0].data_type).toBe('uuid');
     });
 
     it('admin_sessions tokenHash should have unique constraint', async () => {
@@ -126,7 +126,7 @@ describe('Database Schema - Integration Tests', () => {
         WHERE table_name = 'admin_sessions'
       `);
 
-      const uniqueConstraints = (constraints as any[])
+      const uniqueConstraints = (constraints as Array<{ constraint_name: string; constraint_type: string }>)
         .filter((c) => c.constraint_type === 'UNIQUE')
         .map((c) => c.constraint_name);
 
@@ -140,7 +140,7 @@ describe('Database Schema - Integration Tests', () => {
         WHERE table_name = 'summary' AND column_name = 'paragraphs'
       `);
 
-      const dataType = (columns as any[])[0].data_type;
+      const dataType = (columns as Array<{ column_name: string; data_type: string }>)[0].data_type;
       // PostgreSQL represents arrays as "text" in data_type with a different representation
       expect(['text', 'ARRAY']).toContain(dataType);
     });
@@ -152,8 +152,8 @@ describe('Database Schema - Integration Tests', () => {
         WHERE table_name = 'initiatives' AND column_name IN ('tags', 'technologies')
       `);
 
-      expect((columns as any[]).length).toBe(2);
-      (columns as any[]).forEach((col) => {
+      expect((columns as Array<{ column_name: string; data_type: string }>).length).toBe(2);
+      (columns as Array<{ column_name: string; data_type: string }>).forEach((col) => {
         expect(['text', 'ARRAY']).toContain(col.data_type);
       });
     });

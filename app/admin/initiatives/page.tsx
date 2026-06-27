@@ -46,8 +46,8 @@ export default function InitiativesAdminPage() {
       const res = await fetch('/api/admin/initiatives');
       const data = await res.json();
       setInitiatives(data);
-    } catch (error) {
-      console.error('Failed to fetch initiatives:', error);
+    } catch (_error) {
+      console.error('Failed to fetch initiatives:', _error);
     }
   }
 
@@ -106,7 +106,7 @@ export default function InitiativesAdminPage() {
       } else {
         setMessage('Failed to save initiative');
       }
-    } catch (error) {
+    } catch {
       setMessage('Error saving initiative');
     } finally {
       setSaving(false);
@@ -122,7 +122,7 @@ export default function InitiativesAdminPage() {
         setInitiatives(initiatives.filter((i) => i.id !== id));
         setMessage('Initiative deleted');
       }
-    } catch (error) {
+    } catch {
       setMessage('Error deleting initiative');
     }
   }
